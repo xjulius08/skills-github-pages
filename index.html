@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotionen Konsole</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #2c3e50;
+      color: white;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 80%;
+      justify-items: center;
+    }
+
+    button {
+      width: 100px;
+      height: 100px;
+      border: none;
+      border-radius: 50%;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Emotion Farben */
+    .trauer { background-color: #8b8b8b; }
+    .ekel { background-color: #a3d977; }
+    .angst { background-color: #ffae42; }
+    .wut { background-color: #e63946; }
+    .freude { background-color: #f1c40f; }
+    .überraschung { background-color: #3498db; }
+    .liebe { background-color: #e91e63; }
+    .gelassenheit { background-color: #2ecc71; }
+    .stolz { background-color: #9b59b6; }
+
+    #emoji-display {
+      font-size: 80px;
+      margin-top: 20px;
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    #description {
+      margin-top: 20px;
+      font-size: 18px;
+      text-align: center;
+      max-width: 600px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <h1>Emotionen Konsole</h1>
+  <div class="button-container">
+    <button class="trauer" onclick="showEmotion('😢', 'Trauer', 'Trauer ist ein Gefühl von Verlust und Schmerz.')">Trauer</button>
+    <button class="ekel" onclick="showEmotion('🤢', 'Ekel', 'Ekel ist die Abneigung gegen etwas Unangenehmes.')">Ekel</button>
+    <button class="angst" onclick="showEmotion('😨', 'Angst', 'Angst ist eine natürliche Reaktion auf Bedrohungen.')">Angst</button>
+    <button class="wut" onclick="showEmotion('😡', 'Wut', 'Wut ist ein intensives Gefühl von Ärger.')">Wut</button>
+    <button class="freude" onclick="showEmotion('😄', 'Freude', 'Freude ist ein Zustand von Glück und Zufriedenheit.')">Freude</button>
+    <button class="überraschung" onclick="showEmotion('😲', 'Überraschung', 'Überraschung ist ein spontanes Gefühl auf etwas Unerwartetes.')">Überraschung</button>
+    <button class="liebe" onclick="showEmotion('❤️', 'Liebe', 'Liebe ist ein starkes Gefühl der Zuneigung.')">Liebe</button>
+    <button class="gelassenheit" onclick="showEmotion('😊', 'Gelassenheit', 'Gelassenheit ist ein Zustand von Ruhe und Ausgeglichenheit.')">Gelassenheit</button>
+    <button class="stolz" onclick="showEmotion('😌', 'Stolz', 'Stolz ist das Gefühl von Zufriedenheit und Freude über eigene Leistungen.')">Stolz</button>
+  </div>
+
+  <div id="emoji-display"></div>
+  <div id="description"></div>
+
+  <script>
+    function showEmotion(emoji, title, description) {
+      // Emoji anzeigen
+      const emojiDisplay = document.getElementById('emoji-display');
+      emojiDisplay.textContent = emoji;
+      emojiDisplay.style.opacity = 1;
+      emojiDisplay.style.transform = 'scale(1.2)';
+      setTimeout(() => {
+        emojiDisplay.style.transform = 'scale(1)';
+      }, 300);
+
+      // Beschreibung anzeigen
+      const descriptionDisplay = document.getElementById('description');
+      descriptionDisplay.textContent = `${title}: ${description}`;
+      descriptionDisplay.style.opacity = 1;
+
+      // Optional: Sound abspielen
+      const audio = new Audio(`${title.toLowerCase()}.mp3`);
+      audio.play();
+    }
+  </script>
+</body>
+</html>
